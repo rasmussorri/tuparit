@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TUPARIT 2026 // The Goofy Ahh Housewarming</title>
+  <meta name="description" content="Official VIP admission for Tuparit 2026. Featuring Punavuoren Ahven, Google Strategic Partnerships, and non-negotiable attendance.">
+  <link rel="stylesheet" href="./src/style.css">
+</head>
+<body>
+  <!-- Background Grid -->
+  <div class="bg-grid"></div>
+
+  <!-- Floating Wandering Faces Layer -->
+  <div id="faces-container"></div>
+
+  <!-- Top Utility Bar -->
+  <header class="top-nav">
+    <div class="brand-badge">
+      <span>TUPARIT</span>
+      <span class="pill">GOOFY AHH EDITION</span>
+    </div>
+
+    <div class="nav-controls">
+      <button id="btn-sound-toggle" class="nav-btn" title="Toggle Goofy Sound Effects">
+        <span id="sound-icon">🔊</span>
+        <span id="sound-text">SFX: ON</span>
+      </button>
+      <button id="btn-add-face-modal" class="nav-btn" title="Add your face to the floating swarm">
+        <span>📸</span>
+        <span>Add Face</span>
+      </button>
+      <a href="#guest-list-section" class="nav-btn" title="View attendees">
+        <span>👥</span>
+        <span id="nav-attendee-count">3 Coming</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <main class="main-wrapper">
+
+    <!-- Hero Admission Section -->
+    <section class="hero-card" id="admission-hero">
+      <div class="hero-badge">
+        <span>🚨</span>
+        <span>Official Admission Notice // Mandatory Event</span>
+      </div>
+
+      <h1 class="hero-title">
+        WELCOME TO <br>
+        <span class="highlight">TUPARIT 2026</span>
+      </h1>
+
+      <p class="hero-desc">
+        You are cordially (and forcefully) invited to our official housewarming party. 
+        Good vibes, Punavuoren Ahven pilgrimage, and pure goofy ahh energy (BYOB).
+      </p>
+
+      <div class="hero-hosts">
+        <img src="/faces/rasse.jpg" alt="Rasmus Sorri" class="host-avatar" id="hero-host-img">
+        <div class="host-text">
+          <div class="role">Head of Hospitality & Host</div>
+          <div class="name">Rasmus Sorri & Crew</div>
+        </div>
+      </div>
+
+      <!-- Call to Action Urgency Counter (20s Loop) -->
+      <div class="cta-urgency-banner" id="cta-timer-box">
+        <div class="urgency-header">
+          <span class="urgency-pulse-dot"></span>
+          <span class="urgency-title">ACT NOW! SPECIAL OFFER EXPIRES ⚡</span>
+        </div>
+        <div class="urgency-body">
+          <p class="urgency-warning">
+            If you don't lock this in now, admission price increases! <span class="price-hike" id="price-hike-display">€0 ➔ €149</span>
+          </p>
+          <div class="countdown-display">
+            <span class="countdown-label">Time Remaining:</span>
+            <div class="timer-digits" id="timer-digits">00:20.0</div>
+          </div>
+        </div>
+        <div class="timer-progress-bar">
+          <div class="timer-progress-fill" id="timer-progress-fill"></div>
+        </div>
+        <div class="urgency-subtext" id="urgency-subtext">
+          ⚠️ 42 people are viewing this invitation right now. Lock your spot before the price hikes!
+        </div>
+      </div>
+
+      <!-- Action Buttons: Accept & Runaway Dismiss -->
+      <div class="actions-container" id="hero-actions">
+        <button id="btn-accept" class="btn-accept">
+          <span>✨</span>
+          <span>ACCEPT INVITATION</span>
+          <span>🚀</span>
+        </button>
+
+        <button id="btn-dismiss" class="btn-dismiss">
+          <span>❌</span>
+          <span>DECLINE / DISMISS</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Mid Grid: Schedule & Nightclub Roulette -->
+    <div class="section-grid">
+
+      <!-- Evening Plan / Itinerary -->
+      <section class="panel-card" id="plan-section">
+        <div class="panel-header">
+          <h2 class="panel-title">
+            <span>🗓️</span> Plan of the Evening
+          </h2>
+          <span class="data-warning-pill">Timetable</span>
+        </div>
+
+        <div class="timeline">
+          <!-- Item 1: Arrival -->
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <div class="timeline-time">18:00 (6:00 PM)</div>
+              <h3 class="timeline-heading">Arrival & Kickoff</h3>
+              <p class="timeline-text">
+                Doors open at the new crib! Snack buffet powered by Google, apartment grand tour, and supreme pre-games (BYOB!).
+              </p>
+            </div>
+          </div>
+
+          <!-- Item 2: Tolppa Keynote -->
+          <div class="timeline-item keynote">
+            <div class="timeline-marker" style="border-color: var(--accent-purple); box-shadow: 0 0 12px rgba(168, 85, 247, 0.6);"></div>
+            <div class="timeline-content" style="border-color: rgba(168, 85, 247, 0.3); background: rgba(168, 85, 247, 0.08);">
+              <div class="timeline-time" style="color: var(--accent-purple);">20:00 (8:00 PM)</div>
+              <h3 class="timeline-heading">Keynote: "The Age of AI" – Elias Tolppanen 🤖🎤</h3>
+              <p class="timeline-text">
+                Disruptive key takeaway insights on artificial general intelligence, agentic vibes, and Google infrastructure. Mandatory attendance before Ahven.
+              </p>
+            </div>
+          </div>
+
+          <!-- Item 3: Punavuoren Ahven -->
+          <div class="timeline-item alt">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <div class="timeline-time">22:00 (10:00 PM)</div>
+              <h3 class="timeline-heading">Punavuoren Ahven Pilgrimage 🐟</h3>
+              <p class="timeline-text">
+                We migrate en masse to the legendary Punavuoren Ahven pub. Cold pints, cozy booth banter, and warmups before the club.
+              </p>
+            </div>
+          </div>
+
+          <!-- Item 3: Nightclub TBA -->
+          <div class="timeline-item tba">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <div class="timeline-time">01:00 (1:00 AM)</div>
+              <h3 class="timeline-heading">Nightclub: TBA 🪩</h3>
+              <p class="timeline-text">
+                The ultimate destination is being decided! Help the hosts pick or spin the Helsinki Nightclub Roulette below:
+              </p>
+
+              <!-- Nightclub Roulette -->
+              <div class="nightclub-roulette-box">
+                <div style="font-size:0.8rem; color:var(--text-muted); font-family:var(--font-mono); text-transform:uppercase;">
+                  🎰 Helsinki Club Decider 🎰
+                </div>
+                <div id="roulette-result" class="roulette-display">
+                  ✨ [Spin to reveal club] ✨
+                </div>
+                <button id="btn-spin-roulette" class="roulette-btn">
+                  <span>🎲</span> Spin Club Roulette
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right Column: Sponsor & House Rules -->
+      <div class="right-column-stack">
+        <!-- Google Corporate Sponsorship Card -->
+        <section class="panel-card google-sponsor-card" id="sponsor-section">
+          <div class="google-sponsor-header">
+            <div class="google-logo-text">
+              <span class="g-blue">G</span><span class="g-red">o</span><span class="g-yellow">o</span><span class="g-blue">g</span><span class="g-green">l</span><span class="g-red">e</span>
+            </div>
+            <span class="google-badge">Tier 1 Official Sponsor</span>
+          </div>
+
+          <p class="sponsor-quote">
+            "All snacks and server uptime for Tuparit 2026 are generously provided by Google Strategic Partnership Manager — Devices & Data Center Deals, <strong>Elias Tolppanen</strong>. Elias will also deliver the official keynote of the evening: <em>'The Age of AI'</em>."
+          </p>
+
+          <div class="sponsor-details-grid">
+            <div>
+              <div class="sponsor-stat-label">Executive Sponsor & Keynote</div>
+              <div class="sponsor-stat-val">Elias Tolppanen</div>
+            </div>
+            <div>
+              <div class="sponsor-stat-label">Role & Division</div>
+              <div class="sponsor-stat-val">Strategic Partnership Manager, Devices & Data Center Deals</div>
+            </div>
+            <div>
+              <div class="sponsor-stat-label">Keynote Speech</div>
+              <div class="sponsor-stat-val">"The Age of AI" 🤖</div>
+            </div>
+            <div>
+              <div class="sponsor-stat-label">Snack Availability</div>
+              <div class="sponsor-stat-val">99.999% SLA</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Housewarming Protocols & BYOB -->
+        <section class="panel-card party-rules-card">
+          <div class="panel-header" style="margin-bottom: 14px; padding-bottom: 10px;">
+            <h3 class="panel-title" style="font-size: 1.1rem;">
+              <span>📜</span> Housewarming Commandments
+            </h3>
+            <span class="data-warning-pill">Crucial</span>
+          </div>
+          <ul class="rules-list">
+            <li>
+              <span class="emoji">🍺</span>
+              <div><strong>Strictly BYOB:</strong> No host drink service provided – bring your own favorite drinks! Google and the hosts provide an elite snack buffet & crib infrastructure.</div>
+            </li>
+            <li>
+              <span class="emoji">🐟</span>
+              <div><strong>Ahven Protocol:</strong> Departure to Punavuoren Ahven happens promptly at 22:00. No stragglers left behind!</div>
+            </li>
+          </ul>
+        </section>
+      </div>
+
+    </div>
+
+    <!-- Attendees / Guest List Section -->
+    <section class="panel-card attendees-card" id="guest-list-section">
+      <div class="panel-header">
+        <h2 class="panel-title">
+          <span>📋</span> Who's Coming to Tuparit
+        </h2>
+        <span class="data-warning-pill">Attending List</span>
+      </div>
+
+      <div class="guest-list-controls">
+        <input 
+          type="text" 
+          id="guest-search" 
+          class="search-input" 
+          placeholder="🔍 Search attendee name..." 
+        />
+        <button id="btn-rsvp-open-secondary" class="nav-btn" style="background:var(--accent-lime); color:#000; font-weight:800;">
+          + RSVP Now
+        </button>
+      </div>
+
+      <!-- Guest Grid (Only Names) -->
+      <div class="guest-grid" id="guest-grid">
+        <!-- Rendered dynamically -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Modal: RSVP Form -->
+  <div class="modal-backdrop" id="rsvp-modal">
+    <div class="modal-container">
+      <button class="modal-close-btn" id="btn-close-rsvp" title="Close">&times;</button>
+      
+      <h2 class="modal-title">🎉 RSVP FOR TUPARIT</h2>
+      <p class="modal-subtitle">Confirm your spot on the guest board. No backing out!</p>
+
+      <form id="rsvp-form">
+        <!-- Name -->
+        <div class="form-group">
+          <label class="form-label" for="guest-name-input">
+            Your Name / Nickname <span>*</span>
+          </label>
+          <input 
+            type="text" 
+            id="guest-name-input" 
+            class="form-input" 
+            placeholder="e.g. DJ Goofy Ahh, Rasse, Alex..." 
+            required 
+            autocomplete="name"
+          />
+        </div>
+
+        <!-- Email for 5x Reminders -->
+        <div class="form-group">
+          <label class="form-label" for="guest-email-input">
+            Email (5x Automated Reminders)
+          </label>
+          <input 
+            type="email" 
+            id="guest-email-input" 
+            class="form-input" 
+            placeholder="firstname.lastname@gmail.com" 
+            autocomplete="email"
+          />
+          <div style="font-size: 0.76rem; color: var(--text-muted); margin-top: 5px; font-family: var(--font-mono);">
+            ⚡ Automation delivers 5 reminders: 1 week, 1 day, 12h, 2h & 15min before kickoff!
+          </div>
+        </div>
+
+        <!-- BYOB Reminder Notice -->
+        <div class="byob-banner">
+          <div class="byob-icon">🍾</div>
+          <div class="byob-info">
+            <div class="byob-title">BYOB (Bring Your Own Bottle)</div>
+            <p class="byob-desc">
+              Strictly BYOB – bring your own drinks! Google and the hosts provide an elite snack buffet & venue, you bring your own drinks.
+            </p>
+          </div>
+        </div>
+
+        <!-- Hype Level Slider & Real-time Goofy Ahh Quips -->
+        <div class="form-group" style="margin-top: 20px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+            <label class="form-label" style="margin-bottom: 0;">Hype Level (1% – 100%)</label>
+            <span class="hype-val" id="hype-val-display">99%</span>
+          </div>
+          <div class="slider-container">
+            <input type="range" id="guest-hype-range" min="1" max="100" value="99" />
+          </div>
+          <!-- Goofy Ahh Reaction Quip -->
+          <div id="hype-quip" class="hype-quip-box">
+            Almost based... but why withhold that last 1%? Push it to 100%! 👀
+          </div>
+        </div>
+
+        <button type="submit" class="btn-submit-rsvp">
+          🚀 LOCK ME IN! (SUBMIT RSVP)
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Add Face -->
+  <div class="modal-backdrop" id="face-modal">
+    <div class="modal-container">
+      <button class="modal-close-btn" id="btn-close-face" title="Close">&times;</button>
+      <h2 class="modal-title">📸 ADD FLOATING FACE</h2>
+      <p class="modal-subtitle">Upload your selfie or photo to let it wander around the screen!</p>
+
+      <div class="face-upload-area" id="drop-zone">
+        <div style="font-size:2.5rem; margin-bottom:10px;">🤳</div>
+        <p style="font-weight:700; margin-bottom:6px;">Click or Drag & Drop a photo here</p>
+        <p style="font-size:0.8rem; color:var(--text-muted);">Supports PNG, JPG, WebP</p>
+        <input type="file" id="face-file-input" accept="image/*" style="display:none;" />
+      </div>
+
+      <div style="margin-top:16px; display:flex; gap:10px;">
+        <button type="button" id="btn-add-random-emoji-face" class="nav-btn" style="width:100%; justify-content:center;">
+          <span>🤪</span> Spawn Random Goofy Sticker
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Confirmation & Calendar / Wallet Pass -->
+  <div class="modal-backdrop" id="confirmation-modal">
+    <div class="modal-container" style="max-width: 580px;">
+      <button class="modal-close-btn" id="btn-close-confirmation" title="Close">&times;</button>
+      
+      <div style="text-align: center; margin-bottom: 20px;">
+        <span style="font-size: 3rem;">🎟️</span>
+        <h2 class="modal-title" style="font-size: 1.9rem; margin-top: 6px;">ADMISSION CONFIRMED!</h2>
+        <p class="modal-subtitle" style="margin-bottom: 0;">
+          Welcome aboard, <strong id="confirmed-guest-name" style="color: var(--accent-lime);">Legend</strong>! You are officially locked onto the guest list.
+        </p>
+      </div>
+
+      <!-- Digital VIP Wallet Pass Card -->
+      <div class="wallet-pass-card" id="wallet-pass-card">
+        <div class="wallet-header">
+          <div class="wallet-brand">
+            <span style="color: var(--accent-lime);">TUPARIT</span> 2026
+          </div>
+          <span class="wallet-type-badge">VIP PASS</span>
+        </div>
+
+        <div class="wallet-body">
+          <div class="wallet-field">
+            <div class="wallet-label">GUEST</div>
+            <div class="wallet-value" id="pass-guest-name">Guest</div>
+          </div>
+          <div class="wallet-field">
+            <div class="wallet-label">TIME</div>
+            <div class="wallet-value" style="color: var(--accent-gold);">18:00 – 24:00</div>
+          </div>
+          <div class="wallet-field">
+            <div class="wallet-label">KEYNOTE</div>
+            <div class="wallet-value" style="font-size: 0.85rem;">Elias Tolppanen: "The Age of AI"</div>
+          </div>
+          <div class="wallet-field">
+            <div class="wallet-label">ROUTE</div>
+            <div class="wallet-value" style="font-size: 0.85rem;">Crib ➔ Punavuoren Ahven ➔ Club TBA</div>
+          </div>
+        </div>
+
+        <div class="wallet-footer">
+          <div class="wallet-barcode">
+            <div class="fake-barcode">||| | |||| | | ||||| || |||| | ||| |||| |</div>
+            <div class="barcode-number">TUPARIT-2026-VIP-420</div>
+          </div>
+          <div class="wallet-nfc">
+            <span>📶</span>
+            <span style="font-size: 0.65rem; font-family: var(--font-mono);">NFC READY</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5-Step Email Automation Tracker -->
+      <div class="automation-tracker-card">
+        <div class="automation-header">
+          <span style="font-size: 1.3rem;">⚡</span>
+          <div style="text-align: left;">
+            <div style="font-weight: 800; font-size: 0.95rem; color: #fff;">5-STEP EMAIL AUTOMATION SEQUENCE</div>
+            <div style="font-size: 0.75rem; color: var(--text-muted); font-family: var(--font-mono);">
+              Recipient: <span id="automation-email-target" style="color: var(--accent-lime);">Your email</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="automation-timeline">
+          <div class="auto-timeline-step">
+            <span class="step-badge">1 WK</span>
+            <div class="step-text">
+              <strong>Tuparit Approaches!</strong>
+              <small>BYOB supplies & pre-game prep</small>
+            </div>
+          </div>
+          <div class="auto-timeline-step">
+            <span class="step-badge">1 DAY</span>
+            <div class="step-text">
+              <strong>Tomorrow We Move!</strong>
+              <small>Arrival briefing & door codes</small>
+            </div>
+          </div>
+          <div class="auto-timeline-step">
+            <span class="step-badge">12H</span>
+            <div class="step-text">
+              <strong>Today It Happens!</strong>
+              <small>Elias Tolppanen Keynote: "The Age of AI" (8:00 PM)</small>
+            </div>
+          </div>
+          <div class="auto-timeline-step">
+            <span class="step-badge">2H</span>
+            <div class="step-text">
+              <strong>Doors Open at 6:00 PM!</strong>
+              <small>Chill your drinks & Google snacks ready</small>
+            </div>
+          </div>
+          <div class="auto-timeline-step">
+            <span class="step-badge">15 MIN</span>
+            <div class="step-text">
+              <strong>ZERO HOUR IS HERE!</strong>
+              <small>Buzz the door, Tuparit has officially commenced!</small>
+            </div>
+          </div>
+        </div>
+
+        <button id="btn-open-email-preview" type="button" class="preview-emails-btn">
+          👀 Read & Preview 5x Automated Emails
+        </button>
+      </div>
+
+      <!-- Action Buttons: Google Calendar, Apple Calendar, Wallet, Email -->
+      <div class="confirmation-actions">
+        <a id="btn-add-google-cal" href="#" target="_blank" class="calendar-btn google-cal-btn">
+          <span class="cal-icon">📅</span>
+          <span>Add to Google Calendar (18:00–24:00)</span>
+        </a>
+
+        <button id="btn-download-apple-cal" type="button" class="calendar-btn apple-cal-btn">
+          <span class="cal-icon">🍏</span>
+          <span>Download Apple / iCal Calendar (.ics)</span>
+        </button>
+
+        <button id="btn-add-wallet-pass" type="button" class="calendar-btn wallet-btn">
+          <span class="cal-icon">📲</span>
+          <span>Add to Apple / Google Wallet</span>
+        </button>
+
+        <button id="btn-send-email-confirm" type="button" class="calendar-btn email-btn">
+          <span class="cal-icon">✉️</span>
+          <span>Send Confirmation Email</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Modal: Email Preview (5x Automations) -->
+  <div class="modal-backdrop" id="email-preview-modal">
+    <div class="modal-container" style="max-width: 620px;">
+      <button class="modal-close-btn" id="btn-close-email-preview" title="Close">&times;</button>
+      
+      <div style="text-align: center; margin-bottom: 18px;">
+        <span style="font-size: 2.2rem;">📧</span>
+        <h2 class="modal-title" style="font-size: 1.6rem; margin-top: 4px;">5x EMAIL AUTOMATION PREVIEW</h2>
+        <p class="modal-subtitle" style="margin-bottom: 0;">Select an email below to preview automated delivery:</p>
+      </div>
+
+      <!-- Email Tabs -->
+      <div class="email-tabs">
+        <button type="button" class="email-tab-btn active" data-step="0">1 wk</button>
+        <button type="button" class="email-tab-btn" data-step="1">1 day</button>
+        <button type="button" class="email-tab-btn" data-step="2">12 hrs</button>
+        <button type="button" class="email-tab-btn" data-step="3">2 hrs</button>
+        <button type="button" class="email-tab-btn" data-step="4">15 min</button>
+      </div>
+
+      <!-- Email Viewer Box -->
+      <div class="email-viewer-card">
+        <div class="email-viewer-meta">
+          <div><strong style="color:var(--text-muted)">From:</strong> Rasmus & Elias &lt;tuparit@google-deals.fi&gt;</div>
+          <div><strong style="color:var(--text-muted)">Subject:</strong> <span id="preview-email-subject" style="color:var(--accent-lime); font-weight:700;">Tuparit Approaches! 🍾</span></div>
+          <div><strong style="color:var(--text-muted)">Timing:</strong> <span id="preview-email-timing" style="font-family:var(--font-mono); color:var(--accent-gold);">1 week before zero hour</span></div>
+        </div>
+        <div class="email-viewer-body" id="preview-email-body">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>
