@@ -14,7 +14,8 @@ class FloatingFaceSystem {
   init() {
     // Spawn initial pool of faces
     this.spawnFace('/faces/rasse.jpg', 'Rasmus (Host)', true);
-    this.spawnFace(null, '🎙️ Elias', false);
+    this.spawnFace(null, '🎙️ Elias (Host)', false);
+    this.spawnFace(null, '😎 Axel (Host)', false);
     this.spawnFace('/faces/host2.jpg', 'Host Crew', true);
     this.spawnFace(null, '🤪', false);
     this.spawnFace(null, '🗿', false);
