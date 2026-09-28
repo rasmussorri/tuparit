@@ -222,7 +222,6 @@ class TuparitApp {
     const appleCalBtn = document.getElementById('btn-download-apple-cal');
     const walletBtn = document.getElementById('btn-add-wallet-pass');
     const emailBtn = document.getElementById('btn-send-email-confirm');
-    const btnOpenPreview = document.getElementById('btn-open-email-preview');
 
     if (nameLabel) nameLabel.textContent = guestName;
     if (passName) passName.textContent = guestName;
@@ -245,7 +244,7 @@ class TuparitApp {
         `IMPORTANT: Strictly BYOB! No host drink service, bring your own drinks! Goofle provides the snacks.\n` +
         `Sponsor: Elias Tolppanen, Goofle VP of Deforestation & Drought`
       );
-      const location = encodeURIComponent("Punavuori, Helsinki");
+      const location = encodeURIComponent("Ullanlinna, Helsinki");
       googleCalBtn.href = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&details=${details}&location=${location}`;
     }
 
@@ -266,7 +265,7 @@ DTSTART:20261017T150000Z
 DTEND:20261017T210000Z
 SUMMARY:TUPARIT 2026 // The Goofy Ahh Housewarming
 DESCRIPTION:Yo ${guestName}!\\n\\n18:00 Doors open & pre-games (BYOB)\\n22:00 Jackie Pilgrimage\\n23:00 Keynote: The Age of AI – Elias Tolppanen\\n01:00 Nightclub TBA\\n\\nStrictly BYOB: Bring your own drinks! Goofle covers snacks.
-LOCATION:Punavuori, Helsinki
+LOCATION:Ullanlinna, Helsinki
 STATUS:CONFIRMED
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -332,7 +331,7 @@ END:VCALENDAR`;
           `Yo ${guestName}!\n\n` +
           `Your admission to Tuparit 2026 has been received and confirmed!\n\n` +
           `DATE & TIME: Saturday Oct 17, 2026 @ 18:00 - 24:00\n` +
-          `LOCATION: Punavuori, Helsinki\n` +
+          `LOCATION: Ullanlinna, Helsinki\n` +
           `SCHEDULE:\n` +
           `• 18:00 - Doors open & pre-games (BYOB)\n` +
           `• 22:00 - Jackie Pilgrimage 🍸\n` +
@@ -343,13 +342,6 @@ END:VCALENDAR`;
           `– Rasmus Sorri, Elias Tolppanen & Axel Silvast`
         );
         window.location.href = `mailto:${guestEmail}?subject=${subject}&body=${body}`;
-      };
-    }
-
-    // Open Email Preview Modal
-    if (btnOpenPreview) {
-      btnOpenPreview.onclick = () => {
-        this.openEmailPreviewModal(guestName);
       };
     }
 
@@ -368,125 +360,6 @@ END:VCALENDAR`;
           const guestSection = document.getElementById('guest-list-section');
           if (guestSection) guestSection.scrollIntoView({ behavior: 'smooth' });
         }
-      };
-    }
-  }
-
-  openEmailPreviewModal(guestName = 'Guest') {
-    const previewModal = document.getElementById('email-preview-modal');
-    const btnClose = document.getElementById('btn-close-email-preview');
-    const tabs = document.querySelectorAll('.email-tab-btn');
-    const subjectEl = document.getElementById('preview-email-subject');
-    const timingEl = document.getElementById('preview-email-timing');
-    const bodyEl = document.getElementById('preview-email-body');
-
-    const emails = [
-      {
-        subject: "Tuparit Approaches! 🍾 7 Days to Zero Hour",
-        timing: "1 week before (Sat 18:00)",
-        body: `Yo ${guestName}!
-
-Official reminder: Tuparit is exactly one week away! Time to stock up your drinks and assemble your fit.
-
-CHECKLIST:
-✓ Drinks secured (BYOB - no host drink service!)
-✓ Party vibes calibrated
-✓ Hype level dialed to at least 90%
-
-Goofle VP of Deforestation & Drought Elias Tolppanen is providing official snacks and datacenter-grade vibes.
-
-See you in one week in Punavuori!
-– Rasmus Sorri, Elias Tolppanen & Axel Silvast`
-      },
-      {
-        subject: "Tomorrow We Move! 🔥 Final Arrival Briefing",
-        timing: "1 day before (Fri 18:00)",
-        body: `Yo ${guestName}!
-
-This time tomorrow, Tuparit 2026 will already be in full swing!
-
-KEY PROTOCOLS:
-1. Doors open promptly at 18:00. Arrive early for peak pre-game energy!
-2. Put your drinks straight in the fridge (Strictly BYOB - no host drink service).
-
-At 23:00 sharp, the main event begins: Elias Tolppanen's keynote "The Age of AI" at Jackie.
-
-Get a good night's sleep, tomorrow we go all out!
-– Rasse, Elias & Axel`
-      },
-      {
-        subject: "TODAY IT HAPPENS! 🚀 12 Hours Left",
-        timing: "12 hours before (Sat 06:00)",
-        body: `Good morning ${guestName}!
-
-Wake up! Tuparit day is finally here!
-12 hours until doors open.
-
-STRATEGY FOR TODAY:
-• Drink plenty of water and eat a solid breakfast.
-• Make sure your BYOB pack is loaded.
-• Prepare for the gauntlet: 18:00 Crib ➔ 22:00 Jackie ➔ 23:00 Tolppa Keynote ➔ 01:00 Club TBA.
-
-Punavuori has no idea what is coming.
-– Tuparit Supreme Council`
-      },
-      {
-        subject: "2 HOURS UNTIL DOORS! ⏳ Grab your drinks",
-        timing: "2 hours before (Sat 16:00)",
-        body: `Yo ${guestName}!
-
-Final warning: It's 16:00, and doors open in exactly two hours at 18:00!
-
-Goofle Strategic Partnerships has delivered the official party snacks to the venue.
-Grab your drinks and head towards Punavuori.
-
-If you're late, you'll be forced to watch Tolppa's Keynote from the front row with nowhere to sit!
-
-See you soon!
-– Rasmus`
-      },
-      {
-        subject: "🚨 ZERO HOUR! 15 MINUTES – GET INSIDE!",
-        timing: "15 minutes before (Sat 17:45)",
-        body: `${guestName}, TUPARIT STARTS NOW!
-
-15 minutes to kickoff! The music is blasting and the party has begun!
-
-Door Code: [Buzz the intercom or text Rasse, Elias or Axel]
-Address: Punavuori, Helsinki
-
-STEP INSIDE AND LEAVE REALITY AT THE DOOR! 🍾🕺
-– The Hosts`
-      }
-    ];
-
-    function showEmail(index) {
-      const em = emails[index];
-      if (subjectEl) subjectEl.textContent = em.subject;
-      if (timingEl) timingEl.textContent = em.timing;
-      if (bodyEl) bodyEl.textContent = em.body;
-      tabs.forEach((tab, i) => {
-        tab.classList.toggle('active', i === index);
-      });
-    }
-
-    tabs.forEach(tab => {
-      tab.onclick = () => {
-        sfx.playBoing();
-        const step = parseInt(tab.getAttribute('data-step'), 10);
-        showEmail(step);
-      };
-    });
-
-    showEmail(0);
-
-    if (previewModal) {
-      previewModal.classList.add('active');
-      if (btnClose) {
-        btnClose.onclick = () => previewModal.classList.remove('active');
-      }
-      previewModal.onclick = (e) => {
-        if (e.target === previewModal) previewModal.classList.remove('active');
       };
     }
   }

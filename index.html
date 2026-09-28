@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TUPARIT 2026 // The Goofy Ahh Housewarming</title>
   <meta name="description" content="Official VIP admission for Tuparit 2026. Featuring Jackie, Goofle Strategic Partnerships, and non-negotiable attendance.">
+  <meta name="robots" content="noindex, nofollow">
   <link rel="stylesheet" href="./src/style.css">
 </head>
 <body>
@@ -466,10 +467,6 @@
             </div>
           </div>
         </div>
-
-        <button id="btn-open-email-preview" type="button" class="preview-emails-btn">
-          👀 Read & Preview 5x Automated Emails
-        </button>
       </div>
 
       <!-- Action Buttons: Google Calendar, Apple Calendar, Wallet, Email -->
@@ -493,41 +490,6 @@
           <span class="cal-icon">✉️</span>
           <span>Send Confirmation Email</span>
         </button>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- Modal: Email Preview (5x Automations) -->
-  <div class="modal-backdrop" id="email-preview-modal">
-    <div class="modal-container" style="max-width: 620px;">
-      <button class="modal-close-btn" id="btn-close-email-preview" title="Close">&times;</button>
-      
-      <div style="text-align: center; margin-bottom: 18px;">
-        <span style="font-size: 2.2rem;">📧</span>
-        <h2 class="modal-title" style="font-size: 1.6rem; margin-top: 4px;">5x EMAIL AUTOMATION PREVIEW</h2>
-        <p class="modal-subtitle" style="margin-bottom: 0;">Select an email below to preview automated delivery:</p>
-      </div>
-
-      <!-- Email Tabs -->
-      <div class="email-tabs">
-        <button type="button" class="email-tab-btn active" data-step="0">1 wk</button>
-        <button type="button" class="email-tab-btn" data-step="1">1 day</button>
-        <button type="button" class="email-tab-btn" data-step="2">12 hrs</button>
-        <button type="button" class="email-tab-btn" data-step="3">2 hrs</button>
-        <button type="button" class="email-tab-btn" data-step="4">15 min</button>
-      </div>
-
-      <!-- Email Viewer Box -->
-      <div class="email-viewer-card">
-        <div class="email-viewer-meta">
-          <div><strong style="color:var(--text-muted)">From:</strong> Rasmus, Elias & Axel &lt;tuparit@goofle-deals.fi&gt;</div>
-          <div><strong style="color:var(--text-muted)">Subject:</strong> <span id="preview-email-subject" style="color:var(--accent-lime); font-weight:700;">Tuparit Approaches! 🍾</span></div>
-          <div><strong style="color:var(--text-muted)">Timing:</strong> <span id="preview-email-timing" style="font-family:var(--font-mono); color:var(--accent-gold);">1 week before zero hour</span></div>
-        </div>
-        <div class="email-viewer-body" id="preview-email-body">
-          <!-- Populated by JS -->
-        </div>
       </div>
 
     </div>
