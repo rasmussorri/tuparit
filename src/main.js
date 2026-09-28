@@ -17,6 +17,9 @@ const HELSINKI_CLUBS = [
   'Kaivohuone (Kaivopuisto) 🌴'
 ];
 
+// The "roulette" is rigged — it's always Jackie, then some goofy afterparty.
+const RIGGED_RESULT = "🍸 Jackie's... then some goofy ahh afterparty 🎉";
+
 class TuparitApp {
   constructor() {
     this.guests = [];
@@ -574,17 +577,21 @@ STEP INSIDE AND LEAVE REALITY AT THE DOOR! 🍾🕺
       const totalTicks = 24;
       const interval = setInterval(() => {
         counter++;
-        const randomClub = HELSINKI_CLUBS[Math.floor(Math.random() * HELSINKI_CLUBS.length)];
-        resultDisplay.textContent = randomClub;
-        sfx.playBoing();
 
         if (counter >= totalTicks) {
+          // Rigged: no matter what flashes by, it always lands on Jackie.
           clearInterval(interval);
+          resultDisplay.textContent = RIGGED_RESULT;
           spinning = false;
           spinBtn.disabled = false;
           sfx.playVineBoom();
           confetti({ particleCount: 50, spread: 60 });
+          return;
         }
+
+        const randomClub = HELSINKI_CLUBS[Math.floor(Math.random() * HELSINKI_CLUBS.length)];
+        resultDisplay.textContent = randomClub;
+        sfx.playBoing();
       }, 75);
     });
   }
