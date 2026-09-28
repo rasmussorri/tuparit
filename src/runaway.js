@@ -10,7 +10,7 @@ const SNARKY_QUOTES = [
   "Error 404: Dismissal impossible!",
   "Bro really tried to decline 😭",
   "Nope! Try the shiny green button! ✨",
-  "Are you afraid of Punavuoren Ahven? 🐟",
+  "Are you afraid of Jackie? 🍸",
   "Your invitation acceptance is non-negotiable!"
 ];
 

@@ -2,9 +2,9 @@ import confetti from 'canvas-confetti';
 import { sfx } from './audio.js';
 import { setupRunawayButton } from './runaway.js';
 import { initFloatingFaces } from './floating-faces.js';
+import { fetchGuests, addGuest } from './guests.js';
 
-// Empty default guest list - only real signups shown
-const DEFAULT_GUESTS = [];
+const GUEST_REFRESH_MS = 30000;
 
 const HELSINKI_CLUBS = [
   'Kaiku (Kaikukatu) 🎶',
@@ -19,7 +19,8 @@ const HELSINKI_CLUBS = [
 
 class TuparitApp {
   constructor() {
-    this.guests = this.loadGuests();
+    this.guests = [];
+    this.guestQuery = '';
     this.selectedDiets = new Set();
     this.faceSystem = null;
   }
@@ -68,10 +69,13 @@ class TuparitApp {
 
     // 7. Setup Guests Search & Render
     this.renderGuests();
+    this.refreshGuests();
+    setInterval(() => this.refreshGuests(), GUEST_REFRESH_MS);
     const searchInput = document.getElementById('guest-search');
     if (searchInput) {
       searchInput.addEventListener('input', (e) => {
-        this.renderGuests(e.target.value);
+        this.guestQuery = e.target.value;
+        this.renderGuests(this.guestQuery);
       });
     }
 
@@ -85,31 +89,12 @@ class TuparitApp {
     window.addEventListener('keydown', initAudioListener);
   }
 
-  loadGuests() {
+  async refreshGuests() {
     try {
-      const stored = localStorage.getItem('tuparit_guests');
-      if (stored) {
-        const parsed = JSON.parse(stored);
-        const dummyKeywords = ['host', 'google strategic', 'punavuoren ahven', 'keynote', 'ambassador'];
-        const clean = parsed.filter(g => {
-          const lower = g.name.toLowerCase();
-          return !dummyKeywords.some(kw => lower.includes(kw));
-        });
-        // Save cleaned list back
-        localStorage.setItem('tuparit_guests', JSON.stringify(clean));
-        return clean;
-      }
+      this.guests = await fetchGuests();
+      this.renderGuests(this.guestQuery);
     } catch (e) {
-      console.warn('Could not read localStorage', e);
-    }
-    return [];
-  }
-
-  saveGuests() {
-    try {
-      localStorage.setItem('tuparit_guests', JSON.stringify(this.guests));
-    } catch (e) {
-      console.warn('Could not save to localStorage', e);
+      console.warn('Could not load guest list', e);
     }
   }
 
@@ -154,14 +139,14 @@ class TuparitApp {
 
       if (!hypeQuip) return;
       if (val === 100) {
-        hypeQuip.innerHTML = '🚨 <strong>100% MAXIMUM GIGACHAD AURA!</strong> Punavuoren Ahven awaits! 🐟🔥';
+        hypeQuip.innerHTML = '🚨 <strong>100% MAXIMUM GIGACHAD AURA!</strong> Jackie awaits! 🍸🔥';
         hypeQuip.className = 'hype-quip-box max-hype';
         sfx.playBoing();
       } else if (val >= 90) {
         hypeQuip.textContent = `Bro is at ${val}%... why withhold that last bit? Push it to 100%! 👀`;
         hypeQuip.className = 'hype-quip-box high-hype';
       } else if (val >= 70) {
-        hypeQuip.textContent = `${val}%? Decent effort, but Punavuoren Ahven requires 100% energy! 🍺`;
+        hypeQuip.textContent = `${val}%? Decent effort, but Jackie requires 100% energy! 🍺`;
         hypeQuip.className = 'hype-quip-box mid-hype';
       } else if (val >= 40) {
         hypeQuip.textContent = `${val}%? Are you planning to leave at 20:00 or what? Step it up! 🥱`;
@@ -183,7 +168,7 @@ class TuparitApp {
 
     // Form Submission (Only Name required)
     if (rsvpForm) {
-      rsvpForm.addEventListener('submit', (e) => {
+      rsvpForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const nameInput = document.getElementById('guest-name-input');
         const name = nameInput.value.trim();
@@ -192,16 +177,18 @@ class TuparitApp {
         const emailInput = document.getElementById('guest-email-input');
         const email = emailInput ? emailInput.value.trim() : '';
 
-        const newGuest = {
-          id: Date.now().toString(),
-          name,
-          email,
-          vip: false
-        };
-
-        this.guests.unshift(newGuest);
-        this.saveGuests();
-        this.renderGuests();
+        const submitBtn = rsvpForm.querySelector('button[type="submit"]');
+        if (submitBtn) submitBtn.disabled = true;
+        try {
+          await addGuest({ name, email, hype: hypeRange ? parseInt(hypeRange.value, 10) : null });
+        } catch (err) {
+          console.error('RSVP failed', err);
+          alert('RSVP failed to save – check your connection and try again! 😭');
+          return;
+        } finally {
+          if (submitBtn) submitBtn.disabled = false;
+        }
+        await this.refreshGuests();
 
         // Massive celebration
         sfx.playFanfare();
@@ -250,7 +237,7 @@ class TuparitApp {
         `SCHEDULE:\n` +
         `• 18:00 - Doors open & pre-games (BYOB)\n` +
         `• 20:00 - Keynote: "The Age of AI" – Elias Tolppanen\n` +
-        `• 22:00 - Punavuoren Ahven Pilgrimage 🐟\n` +
+        `• 22:00 - Jackie Pilgrimage 🍸\n` +
         `• 01:00 - Nightclub TBA 🪩\n\n` +
         `IMPORTANT: Strictly BYOB! No host drink service, bring your own drinks! Google provides the snacks.\n` +
         `Sponsor: Elias Tolppanen, Google Strategic Partnership Manager`
@@ -275,7 +262,7 @@ DTSTAMP:20260920T120000Z
 DTSTART:20261017T150000Z
 DTEND:20261017T210000Z
 SUMMARY:TUPARIT 2026 // The Goofy Ahh Housewarming
-DESCRIPTION:Yo ${guestName}!\\n\\n18:00 Doors open & pre-games (BYOB)\\n20:00 Keynote: The Age of AI – Elias Tolppanen\\n22:00 Punavuoren Ahven Pilgrimage\\n01:00 Nightclub TBA\\n\\nStrictly BYOB: Bring your own drinks! Google covers snacks.
+DESCRIPTION:Yo ${guestName}!\\n\\n18:00 Doors open & pre-games (BYOB)\\n20:00 Keynote: The Age of AI – Elias Tolppanen\\n22:00 Jackie Pilgrimage\\n01:00 Nightclub TBA\\n\\nStrictly BYOB: Bring your own drinks! Google covers snacks.
 LOCATION:Punavuori, Helsinki
 STATUS:CONFIRMED
 BEGIN:VALARM
@@ -346,11 +333,11 @@ END:VCALENDAR`;
           `SCHEDULE:\n` +
           `• 18:00 - Doors open & pre-games (BYOB)\n` +
           `• 20:00 - Keynote: "The Age of AI" – Elias Tolppanen\n` +
-          `• 22:00 - Punavuoren Ahven Pilgrimage 🐟\n` +
+          `• 22:00 - Jackie Pilgrimage 🍸\n` +
           `• 01:00 - Nightclub TBA 🪩\n\n` +
           `REMINDER: Strictly BYOB. Bring your own drinks. Google covers the snacks.\n\n` +
           `See you at the crib!\n` +
-          `– Rasmus Sorri, Elias Tolppanen & Crew`
+          `– Rasmus Sorri, Elias Tolppanen & Axel Silvast`
         );
         window.location.href = `mailto:${guestEmail}?subject=${subject}&body=${body}`;
       };
@@ -406,7 +393,7 @@ CHECKLIST:
 Google Strategic Partnership Manager Elias Tolppanen is providing official snacks and datacenter-grade vibes.
 
 See you in one week in Punavuori!
-– Rasmus Sorri & Elias Tolppanen`
+– Rasmus Sorri, Elias Tolppanen & Axel Silvast`
       },
       {
         subject: "Tomorrow We Move! 🔥 Final Arrival Briefing",
@@ -422,7 +409,7 @@ KEY PROTOCOLS:
 At 20:00 sharp, the main event begins: Elias Tolppanen's keynote "The Age of AI".
 
 Get a good night's sleep, tomorrow we go all out!
-– Rasse & Crew`
+– Rasse, Elias & Axel`
       },
       {
         subject: "TODAY IT HAPPENS! 🚀 12 Hours Left",
@@ -435,7 +422,7 @@ Wake up! Tuparit day is finally here!
 STRATEGY FOR TODAY:
 • Drink plenty of water and eat a solid breakfast.
 • Make sure your BYOB pack is loaded.
-• Prepare for the gauntlet: 18:00 Crib ➔ 20:00 Tolppa Keynote ➔ 22:00 Punavuoren Ahven ➔ 01:00 Club TBA.
+• Prepare for the gauntlet: 18:00 Crib ➔ 20:00 Tolppa Keynote ➔ 22:00 Jackie ➔ 01:00 Club TBA.
 
 Punavuori has no idea what is coming.
 – Tuparit Supreme Council`
@@ -462,7 +449,7 @@ See you soon!
 
 15 minutes to kickoff! The music is blasting and the party has begun!
 
-Door Code: [Buzz the intercom or text Rasse]
+Door Code: [Buzz the intercom or text Rasse, Elias or Axel]
 Address: Punavuori, Helsinki
 
 STEP INSIDE AND LEAVE REALITY AT THE DOOR! 🍾🕺
@@ -683,9 +670,9 @@ STEP INSIDE AND LEAVE REALITY AT THE DOOR! 🍾🕺
     if (filtered.length === 0) {
       grid.innerHTML = `
         <div style="grid-column: 1/-1; text-align:center; padding:36px 20px; color:var(--text-muted);">
-          No attendees found matching "${filterQuery}".
         </div>
       `;
+      grid.firstElementChild.textContent = `No attendees found matching "${filterQuery}".`;
       return;
     }
 
@@ -696,9 +683,10 @@ STEP INSIDE AND LEAVE REALITY AT THE DOOR! 🍾🕺
       card.innerHTML = `
         <div class="guest-name-badge">
           <span class="guest-avatar-icon">🎉</span>
-          <span class="guest-full-name">${guest.name}</span>
+          <span class="guest-full-name"></span>
         </div>
       `;
+      card.querySelector('.guest-full-name').textContent = guest.name;
 
       grid.appendChild(card);
     });

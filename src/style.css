@@ -273,6 +273,16 @@ body {
   margin-bottom: 36px;
 }
 
+.hero-crew-photo {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto 24px;
+  border-radius: 20px;
+  border: 3px solid var(--accent-lime);
+  box-shadow: 0 0 25px rgba(163, 230, 53, 0.3);
+}
+
 .host-avatar {
   width: 68px;
   height: 68px;

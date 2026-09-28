@@ -1,5 +1,8 @@
 import { sfx } from './audio.js';
 
+const CREW_PHOTO = '/faces/crew.jpg';
+const CREW_HEADS = '/faces/crew-heads.jpg';
+
 class FloatingFaceSystem {
   constructor(container) {
     this.container = container;
@@ -13,12 +16,13 @@ class FloatingFaceSystem {
 
   init() {
     // Spawn initial pool of faces
-    this.spawnFace('/faces/rasse.jpg', 'Rasmus (Host)', true);
-    this.spawnFace(null, '🎙️ Elias', false);
-    this.spawnFace('/faces/host2.jpg', 'Host Crew', true);
+    // One crew photo, each bubble framed on a different head
+    this.spawnFace(CREW_HEADS, 'Rasmus (Host)', true, '0% center');
+    this.spawnFace(CREW_HEADS, 'Elias (Host)', true, '45% center');
+    this.spawnFace(CREW_HEADS, 'Axel (Host)', true, '100% center');
     this.spawnFace(null, '🤪', false);
     this.spawnFace(null, '🗿', false);
-    this.spawnFace('/faces/rasse.jpg', 'Rasse', true);
+    this.spawnFace(CREW_PHOTO, 'Host Crew', true);
 
     this.animate = this.animate.bind(this);
     requestAnimationFrame(this.animate);
@@ -37,7 +41,7 @@ class FloatingFaceSystem {
     });
   }
 
-  spawnFace(imgSrc, label, isImage = true) {
+  spawnFace(imgSrc, label, isImage = true, objectPosition = null) {
     const size = isImage ? 80 + Math.random() * 20 : 65 + Math.random() * 15;
     const el = document.createElement('div');
     el.className = 'floating-face';
@@ -48,6 +52,7 @@ class FloatingFaceSystem {
       const img = document.createElement('img');
       img.src = imgSrc;
       img.alt = label || 'Party Host';
+      if (objectPosition) img.style.objectPosition = objectPosition;
       img.onerror = () => {
         el.innerHTML = '<span class="face-emoji">🎉</span>';
       };
