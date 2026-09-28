@@ -236,8 +236,8 @@ class TuparitApp {
         `Welcome to the most unhinged housewarming party of 2026!\n\n` +
         `SCHEDULE:\n` +
         `• 18:00 - Doors open & pre-games (BYOB)\n` +
-        `• 20:00 - Keynote: "The Age of AI" – Elias Tolppanen\n` +
         `• 22:00 - Jackie Pilgrimage 🍸\n` +
+        `• 23:00 - Keynote: "The Age of AI" – Elias Tolppanen\n` +
         `• 01:00 - Nightclub TBA 🪩\n\n` +
         `IMPORTANT: Strictly BYOB! No host drink service, bring your own drinks! Goofle provides the snacks.\n` +
         `Sponsor: Elias Tolppanen, Goofle VP of Deforestation & Drought`
@@ -262,7 +262,7 @@ DTSTAMP:20260920T120000Z
 DTSTART:20261017T150000Z
 DTEND:20261017T210000Z
 SUMMARY:TUPARIT 2026 // The Goofy Ahh Housewarming
-DESCRIPTION:Yo ${guestName}!\\n\\n18:00 Doors open & pre-games (BYOB)\\n20:00 Keynote: The Age of AI – Elias Tolppanen\\n22:00 Jackie Pilgrimage\\n01:00 Nightclub TBA\\n\\nStrictly BYOB: Bring your own drinks! Goofle covers snacks.
+DESCRIPTION:Yo ${guestName}!\\n\\n18:00 Doors open & pre-games (BYOB)\\n22:00 Jackie Pilgrimage\\n23:00 Keynote: The Age of AI – Elias Tolppanen\\n01:00 Nightclub TBA\\n\\nStrictly BYOB: Bring your own drinks! Goofle covers snacks.
 LOCATION:Punavuori, Helsinki
 STATUS:CONFIRMED
 BEGIN:VALARM
@@ -277,7 +277,7 @@ TRIGGER:-P1D
 END:VALARM
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:TUPARIT 2026: 12 hours left! Tolppa Keynote at 20:00.
+DESCRIPTION:TUPARIT 2026: 12 hours left! Tolppa Keynote at 23:00.
 TRIGGER:-PT12H
 END:VALARM
 BEGIN:VALARM
@@ -332,8 +332,8 @@ END:VCALENDAR`;
           `LOCATION: Punavuori, Helsinki\n` +
           `SCHEDULE:\n` +
           `• 18:00 - Doors open & pre-games (BYOB)\n` +
-          `• 20:00 - Keynote: "The Age of AI" – Elias Tolppanen\n` +
           `• 22:00 - Jackie Pilgrimage 🍸\n` +
+          `• 23:00 - Keynote: "The Age of AI" – Elias Tolppanen\n` +
           `• 01:00 - Nightclub TBA 🪩\n\n` +
           `REMINDER: Strictly BYOB. Bring your own drinks. Goofle covers the snacks.\n\n` +
           `See you at the crib!\n` +
@@ -406,7 +406,7 @@ KEY PROTOCOLS:
 1. Doors open promptly at 18:00. Arrive early for peak pre-game energy!
 2. Put your drinks straight in the fridge (Strictly BYOB - no host drink service).
 
-At 20:00 sharp, the main event begins: Elias Tolppanen's keynote "The Age of AI".
+At 23:00 sharp, the main event begins: Elias Tolppanen's keynote "The Age of AI" at Jackie.
 
 Get a good night's sleep, tomorrow we go all out!
 – Rasse, Elias & Axel`
@@ -422,7 +422,7 @@ Wake up! Tuparit day is finally here!
 STRATEGY FOR TODAY:
 • Drink plenty of water and eat a solid breakfast.
 • Make sure your BYOB pack is loaded.
-• Prepare for the gauntlet: 18:00 Crib ➔ 20:00 Tolppa Keynote ➔ 22:00 Jackie ➔ 01:00 Club TBA.
+• Prepare for the gauntlet: 18:00 Crib ➔ 22:00 Jackie ➔ 23:00 Tolppa Keynote ➔ 01:00 Club TBA.
 
 Punavuori has no idea what is coming.
 – Tuparit Supreme Council`
