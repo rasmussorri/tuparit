@@ -5,7 +5,7 @@ const SNARKY_QUOTES = [
   "Declining is legally forbidden! 🚫",
   "Can't touch this! 🏃‍♂️💨",
   "Tuparit attendance is MANDATORY!",
-  "Google Strategic Partnerships denied your request! 📉",
+  "Goofle Strategic Partnerships denied your request! 📉",
   "Who taught you how to click? 💀",
   "Error 404: Dismissal impossible!",
   "Bro really tried to decline 😭",

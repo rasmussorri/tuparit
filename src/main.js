@@ -239,8 +239,8 @@ class TuparitApp {
         `• 20:00 - Keynote: "The Age of AI" – Elias Tolppanen\n` +
         `• 22:00 - Jackie Pilgrimage 🍸\n` +
         `• 01:00 - Nightclub TBA 🪩\n\n` +
-        `IMPORTANT: Strictly BYOB! No host drink service, bring your own drinks! Google provides the snacks.\n` +
-        `Sponsor: Elias Tolppanen, Google Strategic Partnership Manager`
+        `IMPORTANT: Strictly BYOB! No host drink service, bring your own drinks! Goofle provides the snacks.\n` +
+        `Sponsor: Elias Tolppanen, Goofle VP of Deforestation & Drought`
       );
       const location = encodeURIComponent("Punavuori, Helsinki");
       googleCalBtn.href = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&details=${details}&location=${location}`;
@@ -262,7 +262,7 @@ DTSTAMP:20260920T120000Z
 DTSTART:20261017T150000Z
 DTEND:20261017T210000Z
 SUMMARY:TUPARIT 2026 // The Goofy Ahh Housewarming
-DESCRIPTION:Yo ${guestName}!\\n\\n18:00 Doors open & pre-games (BYOB)\\n20:00 Keynote: The Age of AI – Elias Tolppanen\\n22:00 Jackie Pilgrimage\\n01:00 Nightclub TBA\\n\\nStrictly BYOB: Bring your own drinks! Google covers snacks.
+DESCRIPTION:Yo ${guestName}!\\n\\n18:00 Doors open & pre-games (BYOB)\\n20:00 Keynote: The Age of AI – Elias Tolppanen\\n22:00 Jackie Pilgrimage\\n01:00 Nightclub TBA\\n\\nStrictly BYOB: Bring your own drinks! Goofle covers snacks.
 LOCATION:Punavuori, Helsinki
 STATUS:CONFIRMED
 BEGIN:VALARM
@@ -335,7 +335,7 @@ END:VCALENDAR`;
           `• 20:00 - Keynote: "The Age of AI" – Elias Tolppanen\n` +
           `• 22:00 - Jackie Pilgrimage 🍸\n` +
           `• 01:00 - Nightclub TBA 🪩\n\n` +
-          `REMINDER: Strictly BYOB. Bring your own drinks. Google covers the snacks.\n\n` +
+          `REMINDER: Strictly BYOB. Bring your own drinks. Goofle covers the snacks.\n\n` +
           `See you at the crib!\n` +
           `– Rasmus Sorri, Elias Tolppanen & Axel Silvast`
         );
@@ -390,7 +390,7 @@ CHECKLIST:
 ✓ Party vibes calibrated
 ✓ Hype level dialed to at least 90%
 
-Google Strategic Partnership Manager Elias Tolppanen is providing official snacks and datacenter-grade vibes.
+Goofle VP of Deforestation & Drought Elias Tolppanen is providing official snacks and datacenter-grade vibes.
 
 See you in one week in Punavuori!
 – Rasmus Sorri, Elias Tolppanen & Axel Silvast`
@@ -434,7 +434,7 @@ Punavuori has no idea what is coming.
 
 Final warning: It's 16:00, and doors open in exactly two hours at 18:00!
 
-Google Strategic Partnerships has delivered the official party snacks to the venue.
+Goofle Strategic Partnerships has delivered the official party snacks to the venue.
 Grab your drinks and head towards Punavuori.
 
 If you're late, you'll be forced to watch Tolppa's Keynote from the front row with nowhere to sit!
@@ -610,7 +610,7 @@ STEP INSIDE AND LEAVE REALITY AT THE DOOR! 🍾🕺
 
     const resetQuips = [
       '⚠️ TIME EXPIRED! Price hiked... Ah, we took mercy and granted a 20s grace period! 😂',
-      '🚨 PRICE TRIPLED! But the Google partnership reset the admission fee back to €0! 📉',
+      '🚨 PRICE TRIPLED! But the Goofle partnership reset the admission fee back to €0! 📉',
       '💀 Final chance expired! Quick, an emergency 20s grace period is active! 🏃‍♂️',
       '⚡ 48 people are trying to claim this free VIP spot! Accept now!'
     ];
