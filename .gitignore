@@ -3,3 +3,11 @@ dist
 .DS_Store
 .vercel
 *.local
+.env
+.env.*
+!.env.example
+supabase/.temp
+supabase/.branches
+*.log
+.idea
+.vscode
