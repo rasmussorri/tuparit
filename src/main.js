@@ -241,8 +241,7 @@ class TuparitApp {
         `• 22:00 - Jackie Pilgrimage 🍸\n` +
         `• 23:00 - Keynote: "The Age of AI" – Elias Tolppanen\n` +
         `• 01:00 - Nightclub TBA 🪩\n\n` +
-        `IMPORTANT: Strictly BYOB! No host drink service, bring your own drinks! Goofle provides the snacks.\n` +
-        `Sponsor: Elias Tolppanen, Goofle VP of Deforestation & Drought`
+        `IMPORTANT: Strictly BYOB! No host drink service, bring your own drinks! The hosts provide the snacks.`
       );
       const location = encodeURIComponent("Ullanlinna, Helsinki");
       googleCalBtn.href = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&details=${details}&location=${location}`;
@@ -264,7 +263,7 @@ DTSTAMP:20260920T120000Z
 DTSTART:20261017T150000Z
 DTEND:20261017T210000Z
 SUMMARY:TUPARIT 2026 // The Goofy Ahh Housewarming
-DESCRIPTION:Yo ${guestName}!\\n\\n18:00 Doors open & pre-games (BYOB)\\n22:00 Jackie Pilgrimage\\n23:00 Keynote: The Age of AI – Elias Tolppanen\\n01:00 Nightclub TBA\\n\\nStrictly BYOB: Bring your own drinks! Goofle covers snacks.
+DESCRIPTION:Yo ${guestName}!\\n\\n18:00 Doors open & pre-games (BYOB)\\n22:00 Jackie Pilgrimage\\n23:00 Keynote: The Age of AI – Elias Tolppanen\\n01:00 Nightclub TBA\\n\\nStrictly BYOB: Bring your own drinks! Hosts cover snacks.
 LOCATION:Ullanlinna, Helsinki
 STATUS:CONFIRMED
 BEGIN:VALARM
@@ -337,7 +336,7 @@ END:VCALENDAR`;
           `• 22:00 - Jackie Pilgrimage 🍸\n` +
           `• 23:00 - Keynote: "The Age of AI" – Elias Tolppanen\n` +
           `• 01:00 - Nightclub TBA 🪩\n\n` +
-          `REMINDER: Strictly BYOB. Bring your own drinks. Goofle covers the snacks.\n\n` +
+          `REMINDER: Strictly BYOB. Bring your own drinks. Hosts cover the snacks.\n\n` +
           `See you at the crib!\n` +
           `– Rasmus Sorri, Elias Tolppanen & Axel Silvast`
         );
@@ -490,7 +489,7 @@ END:VCALENDAR`;
 
     const resetQuips = [
       '⚠️ TIME EXPIRED! Price hiked... Ah, we took mercy and granted a 20s grace period! 😂',
-      '🚨 PRICE TRIPLED! But the Goofle partnership reset the admission fee back to €0! 📉',
+      '🚨 PRICE TRIPLED! But we reset the admission fee back to €0! 📉',
       '💀 Final chance expired! Quick, an emergency 20s grace period is active! 🏃‍♂️',
       '⚡ 48 people are trying to claim this free VIP spot! Accept now!'
     ];
