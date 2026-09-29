@@ -1334,3 +1334,22 @@ img, video, canvas { max-width: 100%; }
   .nav-btn { padding: 7px 10px; font-size: 0.75rem; gap: 5px; }
   .hero-title { font-size: clamp(2rem, 11vw, 3rem); }
 }
+
+/* Compact modals on phones so the RSVP form fits without scrolling */
+@media (max-width: 600px) {
+  .modal-backdrop { padding: 8px; height: 100dvh; }
+  .modal-container { padding: 18px 14px 16px; max-width: 100%; }
+  .modal-title { font-size: 1.25rem; margin-bottom: 4px; padding-right: 36px; }
+  .modal-subtitle { font-size: 0.8rem; margin-bottom: 12px; }
+  .form-group { margin-bottom: 10px; }
+  .form-label { font-size: 0.8rem; margin-bottom: 5px; }
+  .form-input, .form-select, .form-textarea { padding: 10px 12px; font-size: 16px; } /* 16px stops iOS focus-zoom */
+  .modal-container .form-group > div[style*="font-size: 0.76rem"] { font-size: 0.68rem !important; margin-top: 4px !important; }
+  .byob-banner { padding: 10px 12px; gap: 10px; margin-bottom: 0; }
+  .byob-icon { font-size: 1.5rem; }
+  .byob-title { font-size: 0.85rem; }
+  .byob-desc { font-size: 0.75rem; line-height: 1.35; }
+  #rsvp-modal .form-group[style*="margin-top"] { margin-top: 12px !important; }
+  .hype-quip-box { padding: 8px 10px; font-size: 0.78rem; margin-top: 8px; }
+  .btn-submit-rsvp { padding: 13px; font-size: 0.95rem; margin-top: 4px; }
+}
