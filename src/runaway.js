@@ -70,6 +70,13 @@ export function setupRunawayButton(btnElement, containerElement) {
     }, 1500);
   }
 
+  // The button stays near its home spot: each dodge hops it ~3cm (about
+  // 115px) away from the pointer, never further than MAX_DRIFT from home.
+  const JUMP = 115;
+  const MAX_DRIFT = 150;
+  let offX = 0;
+  let offY = 0;
+
   function dodge(cursorX, cursorY) {
     // If a modal is open, completely pause dodging so user can interact with forms
     if (document.querySelector('.modal-backdrop.active')) {
@@ -78,57 +85,40 @@ export function setupRunawayButton(btnElement, containerElement) {
     }
 
     const now = Date.now();
-    if (now - lastMoveTime < 50) return; // throttle
+    if (now - lastMoveTime < 250) return; // throttle
     lastMoveTime = now;
 
     const rect = btnElement.getBoundingClientRect();
-    const btnCenterX = rect.left + rect.width / 2;
-    const btnCenterY = rect.top + rect.height / 2;
+    const homeLeft = rect.left - offX;
+    const homeTop = rect.top - offY;
 
-    const dx = btnCenterX - cursorX;
-    const dy = btnCenterY - cursorY;
-    const dist = Math.hypot(dx, dy);
+    let dx = rect.left + rect.width / 2 - cursorX;
+    let dy = rect.top + rect.height / 2 - cursorY;
+    let angle = Math.hypot(dx, dy) < 1 ? Math.random() * Math.PI * 2 : Math.atan2(dy, dx);
+    angle += (Math.random() - 0.5) * 1.2;
 
-    // Proximity threshold: 140px
-    if (dist < 140 || dist === 0) {
-      const winW = window.innerWidth;
-      const winH = window.innerHeight;
-      const safeMargin = 24;
+    const margin = 12;
+    const winW = document.documentElement.clientWidth;
+    let newX = offX + Math.cos(angle) * JUMP;
+    let newY = offY + Math.sin(angle) * JUMP;
 
-      // Calculate jump
-      let moveAngle = Math.atan2(dy, dx);
-      if (dist === 0) moveAngle = Math.random() * Math.PI * 2;
-
-      // Add a bit of randomness to angle
-      moveAngle += (Math.random() - 0.5) * 0.8;
-
-      const jumpDistance = 180 + Math.random() * 120;
-      let newX = rect.left + Math.cos(moveAngle) * jumpDistance;
-      let newY = rect.top + Math.sin(moveAngle) * jumpDistance;
-
-      // Keep within visible bounds
-      if (newX < safeMargin || newX + rect.width > winW - safeMargin) {
-        newX = Math.random() * (winW - rect.width - safeMargin * 2) + safeMargin;
-      }
-      if (newY < safeMargin || newY + rect.height > winH - safeMargin) {
-        newY = Math.random() * (winH - rect.height - safeMargin * 2) + safeMargin;
-      }
-
-      btnElement.style.position = 'fixed';
-      btnElement.style.zIndex = '120';
-      btnElement.style.left = `${newX}px`;
-      btnElement.style.top = `${newY}px`;
-      btnElement.style.transition = 'all 0.18s cubic-bezier(0.34, 1.56, 0.64, 1)';
-      btnElement.style.transform = `rotate(${(Math.random() - 0.5) * 14}deg) scale(1.05)`;
-
-      showTaunt(newX, newY);
+    // Stay close to home, then keep horizontally on screen
+    const drift = Math.hypot(newX, newY);
+    if (drift > MAX_DRIFT) {
+      newX *= MAX_DRIFT / drift;
+      newY *= MAX_DRIFT / drift;
     }
-  }
+    newX = Math.min(Math.max(newX, margin - homeLeft), winW - margin - rect.width - homeLeft);
 
-  // Mouse move listener
-  window.addEventListener('mousemove', (e) => {
-    dodge(e.clientX, e.clientY);
-  });
+    offX = newX;
+    offY = newY;
+    btnElement.style.position = 'relative';
+    btnElement.style.zIndex = '120';
+    btnElement.style.transition = 'transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1)';
+    btnElement.style.transform = `translate(${offX}px, ${offY}px) rotate(${(Math.random() - 0.5) * 14}deg)`;
+
+    showTaunt(homeLeft + offX, homeTop + offY);
+  }
 
   // Touch support
   btnElement.addEventListener('touchstart', (e) => {
@@ -155,7 +145,8 @@ export function setupRunawayButton(btnElement, containerElement) {
     e.stopPropagation();
     sfx.playVineBoom();
     const rect = btnElement.getBoundingClientRect();
-    dodge(rect.left, rect.top);
+    lastMoveTime = 0;
+    dodge(e.clientX || rect.left, e.clientY || rect.top);
     alert("NICE TRY! Dismissing is disabled by Tuparit Supreme Council 🛑");
     return false;
   });
