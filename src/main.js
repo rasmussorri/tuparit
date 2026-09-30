@@ -6,6 +6,13 @@ import { fetchGuests, addGuest } from './guests.js';
 
 const GUEST_REFRESH_MS = 30000;
 
+// Spotify playlist ID (the part after /playlist/ in the share link).
+// Make the playlist collaborative in Spotify (... > Invite collaborators) so guests can add songs.
+const SPOTIFY_PLAYLIST_ID = '5XufZJedvbpTLGIIQfxauX';
+// Collaborator invite link: opening it lets guests join and add songs.
+const SPOTIFY_COLLAB_URL = 'https://open.spotify.com/playlist/5XufZJedvbpTLGIIQfxauX?si=YPzgyKucRwWJC4H5UE76oQ&utm_source=copy-link&pi=iIkhhcz9SPuo8&pt=67060aead177aa439bc92607e2f57422';
+
+
 const HELSINKI_CLUBS = [
   'Kaiku (Kaikukatu) 🎶',
   'Post Bar (Teollisuuskatu) 🎧',
@@ -241,6 +248,7 @@ class TuparitApp {
         `• 22:00 - Jackie Pilgrimage 🍸\n` +
         `• 23:00 - Keynote: "The Age of AI" – Elias Tolppanen\n` +
         `• 01:00 - Nightclub TBA 🪩\n\n` +
+        `DRESS CODE: All black (not strict)\n` +
         `IMPORTANT: Strictly BYOB! No host drink service, bring your own drinks! The hosts provide the snacks.`
       );
       const location = encodeURIComponent("Ullanlinna, Helsinki");
@@ -263,7 +271,7 @@ DTSTAMP:20260920T120000Z
 DTSTART:20261017T150000Z
 DTEND:20261017T210000Z
 SUMMARY:TUPARIT 2026 // The Goofy Ahh Housewarming
-DESCRIPTION:Yo ${guestName}!\\n\\n18:00 Doors open & pre-games (BYOB)\\n22:00 Jackie Pilgrimage\\n23:00 Keynote: The Age of AI – Elias Tolppanen\\n01:00 Nightclub TBA\\n\\nStrictly BYOB: Bring your own drinks! Hosts cover snacks.
+DESCRIPTION:Yo ${guestName}!\\n\\n18:00 Doors open & pre-games (BYOB)\\n22:00 Jackie Pilgrimage\\n23:00 Keynote: The Age of AI – Elias Tolppanen\\n01:00 Nightclub TBA\\n\\nDress code: All black (not strict)\\nStrictly BYOB: Bring your own drinks! Hosts cover snacks.
 LOCATION:Ullanlinna, Helsinki
 STATUS:CONFIRMED
 BEGIN:VALARM
@@ -336,6 +344,7 @@ END:VCALENDAR`;
           `• 22:00 - Jackie Pilgrimage 🍸\n` +
           `• 23:00 - Keynote: "The Age of AI" – Elias Tolppanen\n` +
           `• 01:00 - Nightclub TBA 🪩\n\n` +
+          `DRESS CODE: All black (not strict)\n` +
           `REMINDER: Strictly BYOB. Bring your own drinks. Hosts cover the snacks.\n\n` +
           `See you at the crib!\n` +
           `– Rasmus Sorri, Elias Tolppanen & Axel Silvast`
@@ -577,3 +586,21 @@ document.addEventListener('DOMContentLoaded', () => {
   const app = new TuparitApp();
   app.init();
 });
+
+function initPlaylist() {
+  const card = document.getElementById('playlist-card');
+  if (!card) return;
+  if (!SPOTIFY_PLAYLIST_ID) { card.style.display = 'none'; return; }
+  const url = SPOTIFY_COLLAB_URL;
+  const iframe = document.createElement('iframe');
+  iframe.src = `https://open.spotify.com/embed/playlist/${SPOTIFY_PLAYLIST_ID}?theme=0`;
+  iframe.title = 'Tuparit Spotify playlist';
+  iframe.loading = 'lazy';
+  iframe.allow = 'encrypted-media; clipboard-write';
+  iframe.style.cssText = 'width:100%;height:352px;border:0;border-radius:12px;';
+  document.getElementById('playlist-embed').appendChild(iframe);
+  const link = document.getElementById('playlist-link');
+  link.href = url;
+  link.style.display = 'inline-flex';
+}
+initPlaylist();
